@@ -55,7 +55,6 @@ public class ForeController {
     @RequestMapping("foreregister")
     public String register(Model model,User user) {
         String name =  user.getName();
-        name = HtmlUtils.htmlEscape(name);
         user.setName(name);
         boolean exist = userService.isExist(name);
         
@@ -72,7 +71,6 @@ public class ForeController {
     }
     @RequestMapping("forelogin")
     public String login(@RequestParam("name") String name, @RequestParam("password") String password, Model model, HttpSession session) {
-        name = HtmlUtils.htmlEscape(name);
         User user = userService.get(name,password);
 
         if(null==user){
@@ -118,7 +116,6 @@ public class ForeController {
     @RequestMapping("foreloginAjax")
     @ResponseBody
     public String loginAjax(@RequestParam("name") String name, @RequestParam("password") String password,HttpSession session) {
-        name = HtmlUtils.htmlEscape(name);
         User user = userService.get(name,password);
 
         if(null==user){
@@ -356,7 +353,6 @@ public class ForeController {
         orderService.update(o);
 
         Product p = productService.get(pid);
-        content = HtmlUtils.htmlEscape(content);
 
         User user =(User)  session.getAttribute("user");
         Review review = new Review();
