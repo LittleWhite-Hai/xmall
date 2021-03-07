@@ -55,7 +55,6 @@ public class ForeController {
     @RequestMapping("foreregister")
     public String register(Model model,User user) {
         String name =  user.getName();
-        name = HtmlUtils.htmlEscape(name);
         user.setName(name);
         boolean exist = userService.isExist(name);
         
